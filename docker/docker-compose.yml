@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  php-cli:
+    container_name: "php-cli"
+    build:
+      context: "./php-cli"
+    volumes:
+      - "../project:/project"
+    tty: true
+    stdin_open: true

@@ -1,0 +1,9 @@
+{
+    "name": "forex4you/assignment",
+    "require": {
+        "php": "7.4"
+    },
+    "autoload": {
+        "psr-4": {"Forex4you\\": "src/"}
+    }
+}
