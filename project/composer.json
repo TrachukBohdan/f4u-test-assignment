@@ -1,9 +1,15 @@
 {
     "name": "forex4you/assignment",
     "require": {
-        "php": "7.4"
+        "php": "7.4.11"
     },
     "autoload": {
-        "psr-4": {"Forex4you\\": "src/"}
+        "psr-4": {
+            "Forex4you\\": "src/",
+            "Test\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
     }
 }

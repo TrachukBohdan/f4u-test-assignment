@@ -9,7 +9,7 @@ class Config
     public static function getConfigs(): array
     {
         if (null === self::$configs) {
-            self::$configs = require '../../../config/config.php';
+            self::$configs = require dirname(__DIR__) . '/../config/config.php';
         }
 
         return self::$configs;

@@ -4,6 +4,7 @@ namespace Forex4you\Domain\Model;
 
 use Forex4you\Domain\Exception\AddShippingAddressException;
 use Forex4you\Domain\Exception\ChangeShippingAddressException;
+use Forex4you\Domain\Exception\InvalidFieldValueException;
 
 /**
  * Class Client
@@ -44,19 +45,47 @@ class Client
      * @param string $firstName
      * @param string $lastName
      * @return Client
+     * @throws InvalidFieldValueException
      */
     public static function createFromFullName(string $id, string $firstName, string $lastName): Client
     {
         $client = new Client();
         $client->id = $id;
-        $client->firstName = $firstName;
-        $client->lastName = $lastName;
-
+        $client->setFirstName($firstName);
+        $client->setLastName($lastName);
         $client->defaultShippingAddress = null;
         $client->shippingAddresses = [];
 
         return $client;
     }
+
+    /**
+     * @param string $firstName
+     * @throws InvalidFieldValueException
+     */
+    private function setFirstName(string $firstName): void
+    {
+        if (empty($firstName)) {
+            throw new InvalidFieldValueException('First name cannot be empty');
+        }
+
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @param string $lastName
+     * @throws InvalidFieldValueException
+     */
+    private function setLastName(string $lastName): void
+    {
+        if (empty($lastName)) {
+            throw new InvalidFieldValueException('Last name cannot be empty');
+        }
+
+        $this->lastName = $lastName;
+    }
+
+
 
     /**
      * @return string

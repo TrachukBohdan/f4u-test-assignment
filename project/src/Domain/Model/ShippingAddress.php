@@ -2,6 +2,8 @@
 
 namespace Forex4you\Domain\Model;
 
+use Forex4you\Domain\Exception\InvalidFieldValueException;
+
 /**
  * Class ShippingAddress
  * @package Forex4you\Domain
@@ -36,6 +38,7 @@ class ShippingAddress
      * @param string $zipcode
      * @param string $street
      * @return ShippingAddress
+     * @throws InvalidFieldValueException
      */
     public static function createFromAddress(
         string $country,
@@ -44,8 +47,23 @@ class ShippingAddress
         string $street
     ): ShippingAddress {
 
-        $shippingAddress = new ShippingAddress();
+        if (empty($country)) {
+            throw new InvalidFieldValueException('Country cannot be empty');
+        }
 
+        if (empty($city)) {
+            throw new InvalidFieldValueException('City cannot be empty');
+        }
+
+        if (empty($zipcode)) {
+            throw new InvalidFieldValueException('Zip cannot be empty');
+        }
+
+        if (empty($street)) {
+            throw new InvalidFieldValueException('Street cannot be empty');
+        }
+
+        $shippingAddress = new ShippingAddress();
         $shippingAddress->country = $country;
         $shippingAddress->city = $city;
         $shippingAddress->zipcode = $zipcode;
