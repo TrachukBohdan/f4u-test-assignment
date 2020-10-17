@@ -1,3 +1,8 @@
+
+To run commands run `docker exec -it php-cli bash` and from that container run any command you need
+
+*** 
+
 Let's say, in our system we have two models "client" and "shipping address". Let's assume that we already have some existing (registered) clients in our storage. Let's do this simple and assume that our clients have only three properties ID, firstname and lastname.
 
 Client can have several different shipping addresses, but max number is 3. One of them is a default address, so when client adds the first address, it becomes default. Client can change a default address any time.
